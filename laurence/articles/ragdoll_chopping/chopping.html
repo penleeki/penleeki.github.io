@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+<link rel="stylesheet" type="text/css" href="files/banner-styles.css">
+<link rel="stylesheet" type="text/css" href="files/iconochive.css">
+
+<link href="files/3597120983-css_bundle_v2.css" rel="stylesheet" type="text/css">
+<link href="files/shadowbox.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+.csharpcode, .csharpcode pre
+{
+	font-size: small;
+	color: black;
+	font-family: Consolas, "Courier New", Courier, Monospace;
+	background-color: #ffffff;
+	/*white-space: pre;*/
+}
+
+.csharpcode pre { margin: 0em; }
+
+.csharpcode .rem { color: #008000; }
+
+.csharpcode .kwrd { color: #0000ff; }
+
+.csharpcode .str { color: #a31515; }
+
+.csharpcode .op { color: #0000c0; }
+
+.csharpcode .preproc { color: #cc6633; }
+
+.csharpcode .asp { background-color: #ffff00; }
+
+.csharpcode .html { color: #800000; }
+
+.csharpcode .attr { color: #ff0000; }
+
+.csharpcode .alt 
+{
+	background-color: #f4f4f4;
+	width: 100%;
+	margin: 0em;
+}
+
+.csharpcode .lnum { color: #606060; }
+</style>
+
+<title>Idle Creations Web Log: Chopping up rag dolls in Unity</title>
+<style id="page-skin-1" type="text/css"><!--
+
+body {
+font: normal normal 12px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #cccccc;
+background: #292929 none repeat scroll top left;
+padding: 0 40px 40px 40px;
+}
+html body .region-inner {
+min-width: 0;
+max-width: 100%;
+width: auto;
+}
+h2 {
+font-size: 22px;
+}
+a:link {
+text-decoration:none;
+color: #dd7700;
+}
+a:visited {
+text-decoration:none;
+color: #cc6600;
+}
+a:hover {
+text-decoration:underline;
+color: #cc6600;
+}
+.body-fauxcolumn-outer .fauxcolumn-inner {
+background: transparent none repeat scroll top left;
+_background-image: none;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 400px;
+width: 100%;
+}
+.body-fauxcolumn-outer .cap-top .cap-left {
+width: 100%;
+background: transparent none repeat-x scroll top left;
+_background-image: none;
+}
+.content-outer {
+-moz-box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+-goog-ms-box-shadow: 0 0 10px #333333;
+box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+margin-bottom: 1px;
+}
+.content-inner {
+padding: 10px 10px;
+}
+.content-inner {
+background-color: #333333;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+background: transparent none repeat-x scroll 0 -400px;
+_background-image: none;
+}
+.Header h1 {
+font: normal normal 60px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #ffffff;
+text-shadow: -1px -1px 1px rgba(0, 0, 0, .2);
+}
+.Header h1 a {
+color: #ffffff;
+}
+.Header .description {
+font-size: 140%;
+color: #aaaaaa;
+}
+.header-inner .Header .titlewrapper {
+padding: 22px 30px;
+}
+.header-inner .Header .descriptionwrapper {
+padding: 0 30px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child {
+border-top: 1px solid #404040;
+}
+.tabs-inner .section:first-child ul {
+margin-top: -1px;
+border-top: 1px solid #404040;
+border-left: 0 solid #404040;
+border-right: 0 solid #404040;
+}
+.tabs-inner .widget ul {
+background: #222222 none repeat-x scroll 0 -800px;
+_background-image: none;
+border-bottom: 1px solid #404040;
+margin-top: 0;
+margin-left: -30px;
+margin-right: -30px;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+padding: .6em 1em;
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #999999;
+border-left: 1px solid #333333;
+border-right: 0 solid #404040;
+}
+.tabs-inner .widget li:first-child a {
+border-left: none;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+color: #ffffff;
+background-color: #000000;
+text-decoration: none;
+}
+/* Columns
+----------------------------------------------- */
+.main-outer {
+border-top: 0 solid #404040;
+}
+.fauxcolumn-left-outer .fauxcolumn-inner {
+border-right: 1px solid #404040;
+}
+.fauxcolumn-right-outer .fauxcolumn-inner {
+border-left: 1px solid #404040;
+}
+/* Headings
+----------------------------------------------- */
+div.widget > h2,
+div.widget h2.title {
+margin: 0 0 1em 0;
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #ffffff;
+}
+/* Widgets
+----------------------------------------------- */
+.widget .zippy {
+color: #999999;
+text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
+}
+.widget .popular-posts ul {
+list-style: none;
+}
+/* Posts
+----------------------------------------------- */
+h2.date-header {
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+}
+.date-header span {
+background-color: transparent;
+color: #cccccc;
+padding: inherit;
+letter-spacing: inherit;
+margin: inherit;
+}
+.main-inner {
+padding-top: 30px;
+padding-bottom: 30px;
+}
+.main-inner .column-center-inner {
+padding: 0 15px;
+}
+.main-inner .column-center-inner .section {
+margin: 0 15px;
+}
+.post {
+margin: 0 0 25px 0;
+}
+h3.post-title, .comments h4 {
+font: normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+margin: .75em 0 0;
+}
+.post-body {
+font-size: 110%;
+line-height: 1.4;
+position: relative;
+}
+.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
+.BlogList .item-thumbnail img {
+padding: 0;
+background: #111111;
+border: 1px solid #111111;
+-moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+.post-body img, .post-body .tr-caption-container {
+padding: 1px;
+}
+.post-body .tr-caption-container {
+color: #cccccc;
+}
+.post-body .tr-caption-container img {
+padding: 0;
+background: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+}
+.post-header {
+margin: 0 0 1.5em;
+line-height: 1.6;
+font-size: 90%;
+}
+.post-footer {
+margin: 20px -2px 0;
+padding: 5px 10px;
+color: #888888;
+background-color: #303030;
+border-bottom: 1px solid #444444;
+line-height: 1.6;
+font-size: 90%;
+}
+#comments .comment-author {
+padding-top: 1.5em;
+border-top: 1px solid #404040;
+background-position: 0 1.5em;
+}
+#comments .comment-author:first-child {
+padding-top: 0;
+border-top: none;
+}
+.avatar-image-container {
+margin: .2em 0 0;
+}
+
+/* Accents
+---------------------------------------------- */
+.section-columns td.columns-cell {
+border-left: 1px solid #404040;
+}
+.blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+background-color: #333333;
+padding: 5px;
+}
+.footer-outer {
+border-top: 0 dashed #bbbbbb;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+.mobile .body-fauxcolumn-outer .cap-top {
+background-size: 100% auto;
+}
+.mobile .content-outer {
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+.mobile .tabs-inner .widget ul {
+margin-left: 0;
+margin-right: 0;
+}
+.mobile .post {
+margin: 0;
+}
+.mobile .main-inner .column-center-inner .section {
+margin: 0;
+}
+.mobile .date-header span {
+padding: 0.1em 10px;
+margin: 0 -10px;
+}
+.mobile h3.post-title {
+margin: 0;
+}
+.mobile .blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.mobile .footer-outer {
+border-top: none;
+}
+.mobile .main-inner, .mobile .footer-inner {
+background-color: #333333;
+}
+.mobile-index-contents {
+color: #cccccc;
+}
+.mobile-link-button {
+background-color: #dd7700;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .section:first-child {
+border-top: none;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background-color: #000000;
+color: #ffffff;
+border-top: 1px solid #404040;
+border-bottom: 1px solid #404040;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #404040;
+}
+.header-outer
+{
+margin-left:90px;
+}
+#navbar { display: none; }
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+body {
+min-width: 770px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 770px;
+max-width: 770px;
+_width: 770px;
+}
+.main-inner .columns {
+padding-left: 0px;
+padding-right: 180px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0px;
+right: 180px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0px") -
+parseInt("180px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0px;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 180px;
+}
+.main-inner .column-left-outer {
+width: 0px;
+right: 100%;
+margin-left: -0px;
+}
+.main-inner .column-right-outer {
+width: 180px;
+margin-right: -180px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+
+.title-image{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 75px;
+  width: 567px;
+}
+
+</style></head>
+<body class=" variant-dark">
+
+<div class = "content-outer">
+<div class = "content-inner">
+	<img class="title-image" alt="Idle Creations Web Log" src="files/idle-creations.png">
+	<br>
+<h3 class="post-title entry-title" itemprop="name">
+Chopping up rag dolls in Unity
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content" id="post-body-9197914819056410404" itemprop="articleBody">
+Since we have bladed attacks in Tomb of Rooms, I've been wanting to implement bodies getting chopped up for a while.
+<br><br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="files/lol.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/lol.jpg"></a></div>
+<br>
+I couldn't find any concrete information online explaining how to do it 
+but I decided to attempt it anyway. Since things turned out rather well I
+ thought I'd share my experiences with the process in case anyone else 
+is looking to do the same thing.
+
+<br>
+<br>
+There is an asset you can buy on the Unity store for this. We are a very
+ small team on a super low budget though, and we don't need a big 
+expensive solution. We need something super simple with minimal setup as
+ adding creatures is a long process already. Also as it turns out 
+implementing it isn’t that taxing and can be quite fun, I encourage you 
+to try!
+
+<br>
+<br>
+My initial plan was to keep it simple, altering GameObjects, Meshes and 
+other data as little as possible to achieve the effect I wanted.
+
+<br>
+<br>
+With that in mind this was my plan:
+<br>
+<ol>
+<li>Copy the entire rag doll object</li>
+<li>Determine which polygons are on which side of the cut</li>
+<li>Manipulate the triangle data for both to divide up the polygons</li>
+<li>Cap the severed ends</li>
+<li>Remove components attached to the now empty parts of the bodies</li>
+</ol>
+<br>
+You can find my <a href="http://www.idlecreations.com/loz/chopScript.cs">c# source code here</a>
+ if you want to try it out in the Unity editor. If you are interested in
+ finding out a bit more of the theory behind it though keep reading and 
+I'll go into more detail.
+<br>
+<a name="more"></a>
+<br>
+<br>
+<div align="center">
+<h1>
+1. Copying the rag doll object</h1>
+</div>
+
+<div class="separator" style="clear: both; text-align: center;"><a href="files/ss5.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/ss5.jpg"></a></div>
+
+This was the easiest bit. You can pass any GameObject to:
+<br>
+<pre class="csharpcode">GameObject.Instantiate()</pre>
+And it will clone the entire thing for you. You do need to take a little
+ care though as any scripts on the object aren’t copied down to the 
+level of what state they are in, but created fresh, even running Start()
+ as they fire up.
+<br>
+<br>
+<br>
+<div align="center">
+<h1>
+2. Deciding how to split the mesh</h1>
+</div>
+There are lots of ways you can do this. I decided to sever the rag doll 
+according to the bone weightings. That way there is very little setup, 
+and all the physics objects get to stay the same. The downside is that 
+the only places you can cut are at the joints between weighted areas.
+
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="files/ss1.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/ss1.jpg"></a></div>
+Unity stores the bones as an array of transforms, and the vertex weights
+ as index numbers for that array. The first thing to do is to find the 
+index numbers of the bones we are interested in:
+
+<br>
+<pre class="csharpcode">List&lt;<span class="kwrd">int</span>&gt; boneNumbers = <span class="kwrd">new</span> List&lt;<span class="kwrd">int</span>&gt;();
+<span class="kwrd">foreach</span> (Transform t <span class="kwrd">in</span> bone.GetComponentsInChildren&lt;Transform&gt;())
+{
+    <span class="kwrd">for</span> (<span class="kwrd">int</span> i = 0; i &lt; mySkinnedMeshRenderer.bones.Length; i++)
+    {
+        <span class="kwrd">if</span> (mySkinnedMeshRenderer.bones[i] == t) { boneNumbers.Add(i); }
+    }
+}
+</pre>
+Since the bones are represented in Unity by a hierarchy of GameObjects, a
+ handy shortcut is to just grab all the transforms for the children of 
+the part we are detaching, and then find their index numbers.
+<br>
+<br>
+We also need the weighting information for each vertex so we know what bone its attached to, which we can get with:
+
+<br>
+<pre class="csharpcode">BoneWeight[] weights = myMesh.boneWeights;</pre>
+Now we can write a function to determine if a vertex is attached to any of those bones:
+
+<br>
+<pre class="csharpcode"><span class="kwrd">private</span> <span class="kwrd">static</span> <span class="kwrd">bool</span> isPartOf(BoneWeight b, List&lt;<span class="kwrd">int</span>&gt; indices, <span class="kwrd">float</span> threshold)
+{
+    <span class="kwrd">float</span> weight = 0;
+    <span class="kwrd">foreach</span> (<span class="kwrd">int</span> i <span class="kwrd">in</span> indices)
+    {
+        <span class="kwrd">if</span> (b.boneIndex0 == i) weight += b.weight0;
+        <span class="kwrd">if</span> (b.boneIndex1 == i) weight += b.weight1;
+        <span class="kwrd">if</span> (b.boneIndex2 == i) weight += b.weight2;
+        <span class="kwrd">if</span> (b.boneIndex3 == i) weight += b.weight3;
+    }
+    <span class="kwrd">return</span> (weight &gt; threshold);
+}</pre>
+The threshold determines at what proportion of the total weighting it 
+matches our list. Changing this number will adjust the severing point up
+ and down the joint.
+
+<br>
+<br>
+<br>
+<div align="center">
+<h1>
+3. Dividing up the polygons</h1>
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="files/ss2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/ss2.jpg"></a></div>
+The SkinnedMeshRenderer’s Mesh can be accessed with:
+
+<br>
+<pre class="csharpcode">Mesh myMesh = mySkinnedMeshRenderer.sharedMesh;</pre>
+And copied with calls like this:
+
+<br>
+<pre class="csharpcode">Mesh outerMesh = Object.Instantiate(myMesh) <span class="kwrd">as</span> Mesh;
+Mesh innerMesh = Object.Instantiate(myMesh) <span class="kwrd">as</span> Mesh;
+</pre>
+Unfortunately if your Skinned mesh uses multiple materials (and it 
+probably does), it is not really one single mesh, but multiple sub 
+meshes stored inside the main Mesh.
+
+Since all we are interested in is the triangle data, we can iterate 
+through the submeshes with:
+
+<br>
+<pre class="csharpcode"><span class="kwrd">for</span> (<span class="kwrd">int</span> subMesh = 0; subMesh &lt; myMesh.subMeshCount; subMesh++)</pre>
+And then grab the data we need for each submesh with:
+
+<br>
+<pre class="csharpcode"><span class="kwrd">int</span>[] tris = myMesh.GetTriangles(subMesh);</pre>
+The triangle data is stored as an array of vertex ID numbers. The first 
+three numbers in the array define the first triangle, the next three the
+ second and so on.
+
+<br>
+<br>
+Before we start going through the triangle data we are going to need two
+ lists. One to remember the tris that end up on one side of the cut, and
+ one for the tris that end up on the other side:
+
+<br>
+<pre class="csharpcode">List&lt;<span class="kwrd">int</span>&gt; outerTris = <span class="kwrd">new</span> List&lt;<span class="kwrd">int</span>&gt;();
+List&lt;<span class="kwrd">int</span>&gt; innerTris = <span class="kwrd">new</span> List&lt;<span class="kwrd">int</span>&gt;();
+</pre>
+Now we can iterate through each triangle in the submesh, determining 
+which side of the cut it falls on, and adding its three vertex numbers 
+to the relevant list:
+
+<br>
+<pre class="csharpcode"><span class="kwrd">for</span> (<span class="kwrd">int</span> t = 0; t &lt; tris.Length; t += 3)
+{
+    <span class="kwrd">bool</span> bVert1 = isPartOf(weights[tris[t]], boneNumbers, threshold);
+    <span class="kwrd">bool</span> bVert2 = isPartOf(weights[tris[t + 1]], boneNumbers, threshold);
+    <span class="kwrd">bool</span> bVert3 = isPartOf(weights[tris[t + 2]], boneNumbers, threshold);
+
+    <span class="kwrd">if</span> (bVert1 || bVert2 || bVert3)
+    {
+        innerTris.Add(tris[t]);
+        innerTris.Add(tris[t + 1]);
+        innerTris.Add(tris[t + 2]);
+    }
+    <span class="kwrd">else</span>
+    {
+        outerTris.Add(tris[t]);
+        outerTris.Add(tris[t + 1]);
+        outerTris.Add(tris[t + 2]);
+    }
+}</pre>
+Now we can update the sub mesh of our two new meshes to contain the correct tris:
+
+<br>
+<pre class="csharpcode">outerMesh.SetTriangles(outerTris.ToArray(), subMesh);
+innerMesh.SetTriangles(innerTris.ToArray(), subMesh);
+</pre>
+Once we have finished iterating through the sub meshes, we end up with 
+two new mesh objects that can be assigned back to the skinned mesh 
+renderers for both the original GameObject and its clone like this:
+
+<br>
+<pre class="csharpcode">mySkinnedMeshRenderer.sharedMesh = outerMesh;</pre>
+<br>
+<br>
+<br>
+<div align="center">
+<h1>
+4. Capping the ends</h1>
+</div>
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="files/ss3.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/ss3.jpg"></a></div>
+
+To Cap the separated ends of the mesh we need to:
+<ol>
+<li>Find the edges of the cut ends</li>
+<li>Fill them with a surface of polygons</li>
+<li>UV map those polygons and apply a Material to them</li>
+</ol>
+
+<div class="separator" style="clear: both; text-align: center;"><a href="files/Untitled-1.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/Untitled-1.jpg"></a></div>
+
+A way we can find the edges of the cut is that when we check each 
+polygon to see which side of the cut it belongs, we can also count the 
+number of vertices on each side of the cut. If this polygon is being cut
+ away, and two of them are on one side and one on the other, we know 
+that the two belonging to the same side are part of the edge of the cut.
+ We can then store these edges in a list. 
+<br><br>
+There is probably a more compact way to write it, but my code to do so looks like this:
+
+<pre class="csharpcode"><span class="kwrd">if</span> (bVert1 &amp;&amp; !bVert2 &amp;&amp; !bVert3) 
+{ 
+    edges.Add(tris[t + 1]); 
+    edges.Add(tris[t + 2]); 
+}
+<span class="kwrd">if</span> (!bVert1 &amp;&amp; bVert2 &amp;&amp; !bVert3)
+{ 
+    edges.Add(tris[t + 2]); 
+    edges.Add(tris[t + 0]); 
+}
+<span class="kwrd">if</span> (!bVert1 &amp;&amp; !bVert2 &amp;&amp; bVert3) 
+{ 
+    edges.Add(tris[t + 0]); 
+    edges.Add(tris[t + 1]); 
+}</pre>
+
+Now we can take that list of edges, and use it to cap the end. There are
+ lots of algorithms to do this, but the simplest is probably the fan. To
+ create a fan of polys all you need to do is to pick one vertex on the 
+edge, and connect each edge to that vertex with a polygon.
+<br><br>
+The downsides to doing it this way are that complicated irregular edges 
+are going to look weird, but we don't necessarily need it to look super 
+tidy and all our cuts should be simple rough circle shapes.
+<div class="separator" style="clear: both; text-align: center;">
+<a href="files/ss4.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/ss4.jpg"></a></div>
+
+Similarly with UV mapping the cap, its not super important that it looks
+ perfect in my case, so I just create a Quaternion by grabbing three 
+vertices, and then map all the vertices on a 2D plane at that 
+orientation so they all fit within the UV map.
+<br><br>
+To create the Mesh itself, I copy across most of the data from the 
+original SkinnedMeshRenderer, but put in my own triangle and UV data. I 
+then use Unity's inbuilt method for calculating normals for the new 
+geometry like so:
+
+<pre class="csharpcode">Mesh m = <span class="kwrd">new</span> Mesh();
+m.vertices = parent.vertices;
+m.bindposes = parent.bindposes;
+m.boneWeights = parent.boneWeights;
+m.triangles = triangles;
+m.uv = uvs;
+m.RecalculateNormals();</pre>
+
+Its not a perfect solution that will fit every type of skinned mesh and 
+every type of cut, but for most typical cases it should be fine.
+
+<br>
+<br>
+<br>
+<div align="center">
+<h1>
+5. Cleaning up the GameObjects </h1>
+</div>
+Once that is all done, we need to delete all the physics related stuff 
+from the parts of the body that don't exist on each GameObject any more.
+
+<br>
+<pre class="csharpcode"><span class="kwrd">if</span> (part.GetComponent&lt;CharacterJoint&gt;()) 
+    GameObject.Destroy(part.GetComponent&lt;CharacterJoint&gt;());
+<span class="kwrd">if</span> (part.collider) GameObject.Destroy(part.collider);
+<span class="kwrd">if</span> (part.rigidbody) GameObject.Destroy(part.rigidbody);
+</pre>
+It would be nice to just iterate through all the components, but Unity 
+throws errors if you try to remove a RigidBody before a Joint. If we 
+have any particle effects or other stuff on the bone GameObjects we need
+ to get rid of it here too, otherwise there will be two copies of them 
+in the scene. 
+
+<br>
+<br>
+One last thing to be aware of is that even though we've cleaned up the 
+two GameObjects, the empty parts need to become the child of our 
+seperated body part, or they will stay in the same place as the limb 
+flies off and the polygons still partially weighted to them will stretch
+<br>
+<pre class="csharpcode">GameObject boneInClone = findGameObjectIn(bone.name, clonedObject);
+boneInClone.transform.parent = clonedObject.transform.parent;
+clonedObject.transform.parent = boneInClone.transform;</pre>
+You can do this by finding the severed limb in the cloned version of the
+ rag doll (I wrote a quick function to do this), taking it out of the 
+clone, and then making the rest of the clone a child of that part.
+
+<br>
+<br>
+<br>
+<div align="center">
+<h1>
+Conclusion</h1>
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="files/epic.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="files/epic.jpg"></a></div>
+Kapow! That should be enough to get you started working something like 
+this into your own project. It should cover your standard single 
+SkinnedMeshRenderer humanoid rag doll sort of stuff, but its going to 
+need more work to handle more unusual layouts, such as multiple 
+SkinnedMeshRenderers, or objects containing a mix of skinned and 
+unskinned meshes.
+
+<div style="clear: both;"></div>
+</div></div>
+</body>
+</html>
